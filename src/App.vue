@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="app flex">
+    <div class="app flex flex-column">
       <Navigation />
       <div class="app-content flex flex-column">
+        <InvoiceModal />
         <router-view />
       </div>
     </div>
@@ -10,12 +11,14 @@
 </template>
 
 <script>
-import Navigation from "./components/Navigation.vue"
+import Navigation from "./components/Navigation";
+import InvoiceModal from "./components/InvoiceModal";
 export default {
   components: {
-    Navigation
-  }
-}
+    Navigation,
+    InvoiceModal,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -25,7 +28,27 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+.app {
   background-color: #141625;
+  min-height: 100vh;
+  @media (min-width: 900px) {
+    flex-direction: row !important;
+  }
+  .app-content {
+    padding: 0 20px;
+    flex: 1;
+    position: relative;
+  }
+}
+// animated invoice
+.invoice-enter-active,
+.invoice-leave-active {
+  transition: 0.8s ease all;
+}
+.invoice-enter-from,
+.invoice-leave-to {
+  transform: translateX(-700px);
 }
 button,
 .button {
