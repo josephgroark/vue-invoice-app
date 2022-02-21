@@ -1,9 +1,12 @@
 <template>
-  <div>
+  <div v-if="invoicesLoaded">
     <div class="app flex flex-column">
       <Navigation />
       <div class="app-content flex flex-column">
-        <InvoiceModal />
+        <Modal v-if="modalActive" />
+        <transition name="invoice">
+          <InvoiceModal v-if="invoiceModal" />
+        </transition>
         <router-view />
       </div>
     </div>
@@ -11,12 +14,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import Navigation from "./components/Navigation";
 import InvoiceModal from "./components/InvoiceModal";
+import Modal from "./components/Modal";
 export default {
   components: {
     Navigation,
     InvoiceModal,
+    Modal,
+  },
+  created() {
+    this.GET_INVOICES();
+  },
+  methods: {
+    ...mapActions(["GET_INVOICES"]),
+  },
+  computed: {
+    ...mapState(["invoiceModal", "modalActive", "invoicesLoaded"]),
   },
 };
 </script>
