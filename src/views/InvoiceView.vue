@@ -96,12 +96,12 @@
             <p>{{ item.itemName }}</p>
             <p>{{ item.qty }}</p>
             <p>{{ item.price }}</p>
-            <p>{{ item.total }}</p>
+            <p>{{ item.total.toFixed(2) }}</p>
           </div>
         </div>
         <div class="total flex">
           <p>Amount Due</p>
-          <p>{{ currentInvoice.invoiceTotal }}</p>
+          <p>{{ currentInvoice.invoiceTotal.toFixed(2) }}</p>
         </div>
       </div>
     </div>

@@ -151,7 +151,7 @@
               <td class="qty"><input type="text" v-model="item.qty" /></td>
               <td class="price"><input type="text" v-model="item.price" /></td>
               <td class="total flex">
-                ${{ (item.total = item.qty * item.price) }}
+                ${{ (item.total = item.qty * item.price).toFixed(2) }}
               </td>
               <img
                 @click="deleteInvoiceItem(item.id)"
@@ -319,7 +319,7 @@ export default {
       }
       this.loading = true;
       this.calInvoiceTotal();
-      const dataBase = db.collection("invoices").doc();
+      const dataBase = db.collection("invoices").doc(this.docId);
       await dataBase.set({
         invoiceId: uid(6),
         billerStreetAddress: this.billerStreetAddress,

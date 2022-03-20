@@ -9,7 +9,7 @@
       <span class="person">{{ invoice.clientName }}</span>
     </div>
     <div class="right flex">
-      <span class="price">${{ invoice.invoiceTotal }}</span>
+      <span class="price">${{ invoice.invoiceTotal.toFixed(2) }}</span>
       <div
         class="status-button flex"
         :class="{
